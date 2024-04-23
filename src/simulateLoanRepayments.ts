@@ -8,7 +8,7 @@ type LoanRepaymentEntry = {
   cumulativeInterestSaved: string;
 };
 
-function simulateLoanRepayments(
+export function simulateLoanRepayments(
   startDate: string,
   loanAmount: number,
   annualInterestRate: number, // Annual rate in percentage
@@ -67,4 +67,19 @@ function simulateLoanRepayments(
   }
 
   return repayments;
+}
+
+// Function to print the repayments in a table
+export function printRepaymentsTable(repayments: LoanRepaymentEntry[]): void {
+  console.log(
+    "Date       | Loan Balance | Cash in Offset | Interest Saved | Cumulative Interest Saved",
+  );
+  console.log(
+    "------------------------------------------------------------------------------------",
+  );
+  repayments.forEach((entry) => {
+    console.log(
+      `${entry.date} | $${entry.loanBalance.padStart(12)} | $${entry.cashInOffset.padStart(13)} | $${entry.interestSaved.padStart(13)} | $${entry.cumulativeInterestSaved.padStart(23)}`,
+    );
+  });
 }
