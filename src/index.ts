@@ -1,22 +1,30 @@
 #!/usr/bin/env node
-// NOTE: You can remove the first line if you don't plan to release an
+
 // executable package. E.g. code that can be used as cli like prettier or eslint
 
+import { simulateLoanRepayments } from "./simulateLoanRepayments";
+
 const main = () => {
-  console.log("hello Node.js and Typescript world :]");
+  // Example usage
+  const startDate = "2024-05-01";
+  const loanAmount = 800000; // $500,000 loan
+  const annualInterestRate = 4; // 4% annual interest
+  const cashInOffset = 50000; // $50,000 in the offset account
+  const fortnightlyIncome = 14000; // $2,000 added to the offset account every fortnight
+  const loanTermYears = 30; // 30-year loan term
+  const fortnights = 26 * 30; // Simulate for 30 years (max, though will likely end earlier due to repayments)
+
+  console.log(
+    simulateLoanRepayments(
+      startDate,
+      loanAmount,
+      annualInterestRate,
+      cashInOffset,
+      fortnightlyIncome,
+      loanTermYears,
+      fortnights,
+    ),
+  );
 };
-
-// This was just here to force a linting error for now to demonstrate/test the
-// eslint pipeline. You can uncomment this and run "yarn check-lint" to test the
-// linting.
-// const x: number[] = [1, 2];
-// const y: Array<number> = [3, 4];
-
-// This was just here to force a linting error for now to demonstrate/test the
-// eslint pipeline. You can uncomment this and run "yarn check-lint" to test the
-// linting.
-// if (x == y) {
-//   console.log("equal!");
-// }
 
 main();
