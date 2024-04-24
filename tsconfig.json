@@ -12,8 +12,8 @@
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "sourceMap": true,
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   },
-  "include": ["src", "test"],
-  "exclude": ["dist", "bundle", "node_modules"],
+  "include": ["src", "test", "types/**/*", "equityedge/simulation.ts"],
+  "exclude": ["dist", "bundle", "node_modules"]
 }

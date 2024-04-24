@@ -61,6 +61,7 @@
   },
   "packageManager": "yarn@4.0.2",
   "dependencies": {
-    "big.js": "^6.2.1"
+    "big.js": "^6.2.1",
+    "date-fns": "^3.6.0"
   }
 }

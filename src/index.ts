@@ -2,26 +2,43 @@
 
 // executable package. E.g. code that can be used as cli like prettier or eslint
 
-import { printRepaymentsTable, simulateLoanRepayments } from "./loanSimulation";
+import {
+  SimulationParams,
+  printRepaymentsTable,
+  runSimulation,
+} from "../equityedge/simulation";
 
 const main = () => {
-  const startDate = "2024-05-01";
-  const loanAmount = 800000; // $500,000 loan
-  const annualInterestRate = 4; // 4% annual interest
-  const cashInOffset = 50000; // $50,000 in the offset account
-  const fortnightlyIncome = 2000; // $2,000 added to the offset account every fortnight
-  const loanTermYears = 30; // 30-year loan term
-  const fortnights = 52 * 30; // Simulate for 30 years
+  const simulationParams: SimulationParams = {
+    startDate: "2024-01-01",
+    loanAmount: 10000,
+    annualInterestRate: 5,
+    cashInOffset: 0,
+    incomePerInterval: 1000,
+    loanTermYears: 5,
+    intervals: 60, // Assuming monthly intervals for 5 years
+    intervalType: "monthly",
+    events: [
+      {
+        date: "2024-02-15",
+        target: "offset",
+        action: "increase",
+        amount: 500, // Increase cash in offset by $500 on January 15, 2024,
+        description: "some bill",
+      },
+      {
+        date: "2024-03-20",
+        target: "loan",
+        action: "decrease",
+        amount: 2000, // Decrease loan amount by $2000 on March 1, 2024
+      },
+      // Add more events as needed
+    ],
+  };
 
-  const repayments = simulateLoanRepayments(
-    startDate,
-    loanAmount,
-    annualInterestRate,
-    cashInOffset,
-    fortnightlyIncome,
-    loanTermYears,
-    fortnights,
-  );
+  // Simulate loan repayments
+  const repayments = runSimulation(simulationParams);
+  // Print the repayments table
   printRepaymentsTable(repayments);
 };
 
