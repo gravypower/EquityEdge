@@ -43,10 +43,12 @@
   "devDependencies": {
     "@tsconfig/node20": "20.1.4",
     "@types/big.js": "^6.2.2",
+    "@types/chai": "^4.3.14",
     "@types/node": "20.12.7",
     "@types/nodemon": "1.19.6",
     "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.21.0",
+    "chai": "^5.1.0",
     "esbuild": "0.19.12",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",

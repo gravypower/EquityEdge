@@ -1,22 +1,35 @@
 import Big from "big.js";
 
-type LoanRepaymentEntry = {
-  date: string;
+export type LoanRepaymentEntry = {
+  date: string | undefined;
   loanBalance: string;
   cashInOffset: string;
   interestSaved: string;
   cumulativeInterestSaved: string;
 };
 
+export type LoanSimulationParams = {
+  startDate: string;
+  loanAmount: number;
+  annualInterestRate: number;
+  cashInOffset: number;
+  fortnightlyIncome: number;
+  loanTermYears: number;
+  fortnights: number;
+};
+
 export function simulateLoanRepayments(
-  startDate: string,
-  loanAmount: number,
-  annualInterestRate: number, // Annual rate in percentage
-  cashInOffset: number,
-  fortnightlyIncome: number,
-  loanTermYears: number,
-  fortnights: number,
+  params: LoanSimulationParams,
 ): LoanRepaymentEntry[] {
+  const {
+    startDate,
+    loanAmount,
+    annualInterestRate,
+    cashInOffset,
+    fortnightlyIncome,
+    loanTermYears,
+    fortnights,
+  } = params;
   const monthlyRate = new Big(annualInterestRate).div(1200); // Convert annual rate to a monthly rate
   const totalPayments = new Big(loanTermYears).times(12); // Total number of monthly payments
   const P = new Big(loanAmount);
